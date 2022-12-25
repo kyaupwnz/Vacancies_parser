@@ -1,6 +1,6 @@
 import json
-import os
-cwd = os.getcwd()
+
+
 class Connector:
     """
     Класс коннектор к файлу, обязательно файл должен быть в json формате
@@ -15,7 +15,7 @@ class Connector:
 
     @data_file.setter
     def data_file(self, value):
-        self.__data_file = os.path.join(cwd, value)
+        self.__data_file = value
         self.__connect()
 
     def __connect(self):
