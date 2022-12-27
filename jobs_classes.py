@@ -1,11 +1,26 @@
+from connector import Connector
 class Vacancy:
-    __slots__ = ...
+    __slots__ = ('name', 'link', 'description', 'salary')
 
-    def __init__(self, *args, **kwargs):
-        pass
+    def __init__(self, name, link, description, salary):
+        self.name = name
+        self.link = link
+        self.description = description
+        self.salary = salary
+
+    def __eq__(self, other):
+        return self.salary == other.salary
+    def __lt__(self, other):
+        return self.salary < other.salary
+    def __le__(self, other):
+        return self.salary <= other.salary
+    def __gt__(self, other):
+        return self.salary > other.salary
+    def __ge__(self, other):
+        return self.salary >= other.salary
 
     def __str__(self):
-        pass
+        return f'Название вакансии:{self.name}, ссылка на вакансию:{self.link}, опсание вакансии:{self.description}, З/п вакансии:{self.salary}'
 
 
 
@@ -17,23 +32,32 @@ class CountMixin:
         Вернуть количество вакансий от текущего сервиса.
         Получать количество необходимо динамически из файла.
         """
-        pass
+        connector = Connector()
+        connector.data_file = self.json_file
+        return len(connector.read_file())
 
 
 
-class HHVacancy(Vacancy):  # add counter mixin
+class HHVacancy(Vacancy, CountMixin):  # add counter mixin
     """ HeadHunter Vacancy """
+    json_file = 'HH_response.json'
+    def __init__(self, name, link, description, salary, company_name):
+        super().__init__(name, link, description, salary)
+        self.company_name = company_name
 
     def __str__(self):
-        return f'HH: {self.comany_name}, зарплата: {self.salary} руб/мес'
+        return f'HH: {self.company_name}, зарплата: {self.salary} руб/мес'
 
 
 
-class SJVacancy(Vacancy):  # add counter mixin
+class SJVacancy(Vacancy, CountMixin):  # add counter mixin
     """ SuperJob Vacancy """
+    def __init__(self, name, link, description, salary, company_name):
+        super().__init__(name, link, description, salary)
+        self.company_name = company_name
 
     def __str__(self):
-        return f'SJ: {self.comany_name}, зарплата: {self.salary} руб/мес'
+        return f'SJ: {self.company_name}, зарплата: {self.salary} руб/мес'
 
 
 def sorting(vacancies):
