@@ -40,7 +40,7 @@ class CountMixin:
 
 class HHVacancy(Vacancy, CountMixin):  # add counter mixin
     """ HeadHunter Vacancy """
-    json_file = 'HH_response.json'
+    json_file = 'HH_responses.json'
     def __init__(self, name, link, description, salary, company_name):
         super().__init__(name, link, description, salary)
         self.company_name = company_name
@@ -52,6 +52,7 @@ class HHVacancy(Vacancy, CountMixin):  # add counter mixin
 
 class SJVacancy(Vacancy, CountMixin):  # add counter mixin
     """ SuperJob Vacancy """
+    json_file = 'SJ_responses.json'
     def __init__(self, name, link, description, salary, company_name):
         super().__init__(name, link, description, salary)
         self.company_name = company_name
@@ -62,8 +63,9 @@ class SJVacancy(Vacancy, CountMixin):  # add counter mixin
 
 def sorting(vacancies):
     """ Должен сортировать любой список вакансий по ежемесячной оплате (gt, lt magic methods) """
-    pass
+    return sorted(vacancies, reverse = True)
 
 def get_top(vacancies, top_count):
     """ Должен возвращать {top_count} записей из вакансий по зарплате (iter, next magic methods) """
-    pass
+    for i in range(top_count):
+        print(vacancies[i])
