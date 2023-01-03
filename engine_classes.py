@@ -43,6 +43,7 @@ class HH(Engine):
         json_file.insert(result)
 
 
+
 class SuperJob(Engine):
     very_secret_key = 'v3.r.137233612.708c594d2236b787f2054970ef2f9ccb6a23f5a0.689d69c89b3e3e5864670c58565486c6319767d7'
     def get_vacancies(self, input_word, page):
@@ -72,8 +73,8 @@ class SuperJob(Engine):
 
 
 if __name__ == '__main__':
-    hh = HH('python Томск Senior Django')
-    hh.get_request('python Томск Senior Django', 100)
-    #sj = SuperJob('python')
-    #sj.get_request('python Томск', 100)
+    #hh = HH('python Томск Senior Django')
+    #hh.get_request('python Томск ', 100)
+    sj = SuperJob('python')
+    sj.get_request('python', 100)
 

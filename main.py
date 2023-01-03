@@ -1,16 +1,18 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
+from engine_classes import *
+from jobs_classes import *
+from utils import *
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    input_word = input('Введите поисковый запрос:')
+    vacancies_count = input('Введите количество вакансий в поисковом запросе:')
+    top_count = int(input('Введите количество вакансий для вывода в терминал:'))
+    hh = HH(input_word, vacancies_count)
+    hh.get_request(input_word, vacancies_count)
+    sj = SuperJob(input_word, vacancies_count)
+    sj.get_request(input_word, vacancies_count)
+    data_hh = init_HH()
+    data_sj = init_SJ()
+    data_hh_sorted = sorting(data_hh)
+    data_sj_sorted = sorting(data_sj)
+    get_top(data_hh_sorted, top_count)
+    get_top(data_sj_sorted, top_count)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
