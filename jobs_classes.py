@@ -87,4 +87,4 @@ def sorting(vacancies):
 def get_top(vacancies, top_count):
     """ Должен возвращать {top_count} записей из вакансий по зарплате (iter, next magic methods) """
     for i in range(top_count):
-        return (f'Вакансия номер {i + 1}', vacancies[i])
+        print(f'Вакансия номер {i + 1}', vacancies[i])
